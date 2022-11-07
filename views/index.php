@@ -12,27 +12,39 @@ require("../php/main.php");
     <title>Gastenboek</title>
 </head>
 <body>
-    <form action="" method="post">
-        <div>
-            <label for="firstName">voornaam</label>
-            <input id="firstName" type="text" name="firstName">
-        </div>
+    <div class="wrapper">
+        <section class="guestbookInput">
 
-        <div>
-            <label for="lastName">nanaam</label>
-            <input id="lastName" type="text" name="lastName">
-        </div>
+            <form action="" method="post">
 
-        <div>
-            <label for="message">bericht</label>
-            <input id="message" type="text" name="message">
-        </div>
+                    <label for="firstName">Voornaam</label>
+                    <input id="firstName" type="text" name="firstName">
 
-        <input type="submit">
-    </form>
+                    <label for="lastName">Achternaam</label>
+                    <input id="lastName" type="text" name="lastName">
 
-    <section class="messages-list">
+                    <label for="message">Bericht</label>
+                    <input id="message" type="text" name="message" required>
+
+                <input id="submit" type="submit">
+            </form>
+        </section>
+
+
+        <section class="messagesList">
+            <div class="guestbookEntry">
+                <div class="userName">
+                    John Dough
+                </div>
+                <div class="message">
+                    TestEntry
+                </div> 
+            </div>
+
+        
         <!-- echo result of list maak functie -->
-    </section>
+        </section>
+
+    </div>
 </body>
 </html>
