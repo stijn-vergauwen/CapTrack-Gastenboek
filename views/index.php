@@ -32,14 +32,9 @@ require("../php/main.php");
 
 
         <section class="messagesList">
-            <div class="guestbookEntry">
-                <div class="userName">
-                    John Dough
-                </div>
-                <div class="message">
-                    TestEntry
-                </div> 
-            </div>
+
+            <?= MakeGuestbookList($pathToJsonFile);?>
+
 
         
         <!-- echo result of list maak functie -->
