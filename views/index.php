@@ -12,6 +12,27 @@
     <title>Gastenboek</title>
 </head>
 <body>
-    
+    <form action="" method="post">
+        <div>
+            <label for="firstName">voornaam</label>
+            <input id="firstName" type="text" name="firstName">
+        </div>
+
+        <div>
+            <label for="lastName">nanaam</label>
+            <input id="lastName" type="text" name="lastName">
+        </div>
+
+        <div>
+            <label for="message">bericht</label>
+            <input id="message" type="text" name="message">
+        </div>
+
+        <input type="submit">
+    </form>
+
+    <section class="messages-list">
+        <!-- echo result of list maak functie -->
+    </section>
 </body>
 </html>
