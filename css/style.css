@@ -1,7 +1,7 @@
 body {
     height: 100%;
     background-image: linear-gradient(white, blue);
-
+    margin: 0;
     overflow-y: hidden;
 }
 
@@ -9,12 +9,13 @@ body {
     display: flex;
     gap: 20px;
 
+
 }
 
 form {
     display: grid;
     grid-template-columns: 100px 1fr;
-
+    margin: 8px;
     gap: 10px;
 }
 
