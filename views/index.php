@@ -17,6 +17,8 @@ require("../php/main.php");
 
             <form action="" method="post">
 
+                    <!-- zorg dat voor & achter naam blijft staan -->
+
                     <label for="firstName">Voornaam</label>
                     <input id="firstName" type="text" name="firstName">
 
@@ -30,14 +32,10 @@ require("../php/main.php");
             </form>
         </section>
 
-
         <section class="messagesList">
 
-            <?= MakeGuestbookList($pathToJsonFile);?>
+            <?= createGuestbookList($pathToJsonFile);?>
 
-
-        
-        <!-- echo result of list maak functie -->
         </section>
 
     </div>
