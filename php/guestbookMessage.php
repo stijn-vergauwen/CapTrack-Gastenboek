@@ -1,11 +1,7 @@
 <?php
+require("message.php");
 
-interface Message {
-    public function getAuthor() : Author;
-    public function getMessage() : string;
-}
-
-class GuestbookEntry implements Message, JsonSerializable {
+class GuestbookMessage implements Message, JsonSerializable {
     private $author;
     private $message;
     // private $timeOfCreation; // komt later wel
@@ -15,7 +11,6 @@ class GuestbookEntry implements Message, JsonSerializable {
         $this->message = $message;
     }
   
-    // Methods
     public function getAuthor() : Author {
         return $this->author;
     }
