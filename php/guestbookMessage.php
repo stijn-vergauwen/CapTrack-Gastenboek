@@ -4,11 +4,12 @@ require("message.php");
 class GuestbookMessage implements Message, JsonSerializable {
     private $author;
     private $message;
-    // private $timeOfCreation; // komt later wel
+    private $createdTime;
 
     function __construct(Author $author, string $message) {
         $this->author = $author;
         $this->message = $message;
+        $this->createdTime = "not implemented";
     }
   
     public function getAuthor() : Author {
@@ -18,8 +19,15 @@ class GuestbookMessage implements Message, JsonSerializable {
     public function getMessage() : string {
         return $this->message;
     }
+
+    public function getTimeOfCreation() : string {
+        return $this->createdTime;
+    }
     
-    public function jsonSerialize() : mixed {
-        return $this->message;
+    public function jsonSerialize() : array {
+        return [
+            "message" => $this->message,
+            "createdTime" => $this->createdTime
+        ];
     }
 }

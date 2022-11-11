@@ -7,7 +7,7 @@ class Guestbook {
         $this->filePath = $filePath;
     }
 
-    // create html elements
+    // creating html
     
     public function getMessagesAsHTML() : string {
         $authors = $this->getDataFromFile();
@@ -24,33 +24,33 @@ class Guestbook {
     
     private function createMessageHTML(GuestbookMessage $message) : string {
         return (
-            "<div class='guestbookEntry'>
-                <div class='userName'>
+            "<form class='guestbook-entry' action='' method='post'>
+                <input type='hidden' name='messageToDelete' value='{$message->getMessage()}'>
+                <div class='author-name'>
                     {$message->getAuthor()->getName()}
                 </div>
                 <div class='message'>
                     {$message->getMessage()}
                 </div>
-            </div>"
+                <input class='btn-delete-message' type='submit' value='X'>
+            </form>"
         );
     }
     
-    // crud
+    // load / save to file
     
     public function getDataFromFile() : array {
         $guestbookData = (array) json_decode(file_get_contents($this->filePath), true);
+        $authors = array();
         
-        $entryArray = array();
-        
-        // gets array of authors, foreach, make new author with array of entries, foreach, make new guestbookEntry
-        foreach($guestbookData as $entry) {
-            array_push($entryArray, new Author(
-                $entry["firstName"],
-                $entry["lastName"],
-                $entry["messages"]
+        foreach($guestbookData as $author) {
+            array_push($authors, new Author(
+                $author["firstName"],
+                $author["lastName"],
+                $author["messages"]
             ));
         }
-        return $entryArray;
+        return $authors;
     }
 
     function saveDataToFile(array $authors) {
@@ -62,8 +62,10 @@ class Guestbook {
 
         file_put_contents($this->filePath, json_encode($authors));
     }
+
+    // crud
     
-    public function addGuestbookEntry(array $request) {
+    public function addGuestbookMessage(array $request) {
         $authors = $this->getDataFromFile();
         $author = $this->findAuthorByName($authors, $request["firstName"], $request["lastName"]);
         if($author == null) {
@@ -77,8 +79,26 @@ class Guestbook {
         $this->saveDataToFile($authors);
     }
     
-    public function deleteGuestbookEntry(string $message) {
-        // find entry by message & delete from data
+    public function deleteGuestbookMessage(string $messageToDelete) {
+        $authors = $this->getDataFromFile();
+
+        foreach($authors as $author) {
+            $messages = $author->getMessages();
+            $hasFoundMessage = false;
+
+            // message to delete is bad, use datetime instead, then no duplication
+
+            for($i = 0; $i < count($messages); $i++) {
+                if($messages[$i]->getMessage() == $messageToDelete) {
+                    $author->deleteMessage($i);
+                    $hasFoundMessage = true;
+                }
+                if($hasFoundMessage) break;
+            }
+            if($hasFoundMessage) break;
+        }
+
+        $this->saveDataToFile($authors);
     }
 
     function findAuthorByName(array $authors, string $firstName, string $lastName) {
@@ -88,5 +108,22 @@ class Guestbook {
             }
         }
         return null;
+    }
+
+    function findGuestbookMessageByMessage(array $authors, string $message) {
+        foreach($authors as $author) {
+            foreach($author->getMessages() as $guestbookMessage) {
+                if($guestbookMessage->getMessage() == $message) {
+                    return $guestbookMessage;
+                }
+            }
+        }
+        return null;
+    }
+
+    function orderMessagesByCreatedTime(array $messages) : array {
+        $orderedMessages = array();
+
+        // not implemented
     }
 }

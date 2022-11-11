@@ -13,7 +13,7 @@ require("../php/main.php");
 </head>
 <body>
     <div class="wrapper">
-        <section class="guestbookInput">
+        <section class="guestbook-input">
 
             <form action="" method="post">
 
@@ -32,7 +32,7 @@ require("../php/main.php");
             </form>
         </section>
 
-        <section class="messagesList">
+        <section class="messages-list">
 
             <?= $guestbook->getMessagesAsHTML();?>
 

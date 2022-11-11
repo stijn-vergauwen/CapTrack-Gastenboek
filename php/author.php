@@ -1,6 +1,7 @@
 <?php
+require("user.php");
 
-class Author implements JsonSerializable {
+class Author implements User, JsonSerializable {
     private $firstName;
     private $lastName;
     private $messages;
@@ -15,12 +16,16 @@ class Author implements JsonSerializable {
         $this->messages = array();
 
         foreach($messagesArray as $message) {
-            array_push($this->messages, new GuestbookMessage($this, $message));
+            array_push($this->messages, new GuestbookMessage($this, $message["message"]));
         }
     }
 
     public function createMessage(string $message) {
         array_push($this->messages, new GuestbookMessage($this, $message));
+    }
+
+    public function deleteMessage(string $indexToDelete) {
+        unset($this->messages[$indexToDelete]);
     }
 
     public function getMessages() : array {
@@ -35,11 +40,11 @@ class Author implements JsonSerializable {
         return ($this->firstName == $firstName && $this->lastName == $lastName);
     }
     
-    public function jsonSerialize() : mixed {
+    public function jsonSerialize() : array {
         return [
             "firstName" => $this->firstName,
             "lastName" => $this->lastName,
-            "messages" => array_map(fn($message) : string => $message->jsonSerialize(), $this->messages)
+            "messages" => array_map(fn($message) : array => $message->jsonSerialize(), $this->messages)
         ];
     }
 }
