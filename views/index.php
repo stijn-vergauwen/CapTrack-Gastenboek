@@ -13,28 +13,28 @@ require("../php/main.php");
 </head>
 <body>
     <div class="wrapper">
-        <section class="guestbookInput">
+        <section class="guestbook-input">
 
             <form action="" method="post">
 
-                    <!-- zorg dat voor & achter naam blijft staan -->
+                <!-- zorg dat voor & achter naam blijft staan -->
 
-                    <label for="firstName">Voornaam</label>
-                    <input id="firstName" type="text" name="firstName">
+                <label for="firstName">Voornaam</label>
+                <input id="firstName" type="text" name="firstName">
 
-                    <label for="lastName">Achternaam</label>
-                    <input id="lastName" type="text" name="lastName">
+                <label for="lastName">Achternaam</label>
+                <input id="lastName" type="text" name="lastName">
 
-                    <label for="message">Bericht</label>
-                    <input id="message" type="text" name="message" required>
+                <label for="message">Bericht</label>
+                <input id="message" type="text" name="message" required>
 
                 <input id="submit" type="submit">
             </form>
         </section>
 
-        <section class="messagesList">
+        <section class="messages-list">
 
-            <?= createGuestbookList($pathToJsonFile);?>
+            <?= $guestbook->getMessagesAsHTML();?>
 
         </section>
 

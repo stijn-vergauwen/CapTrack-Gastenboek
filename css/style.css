@@ -1,3 +1,4 @@
+/* general */
 body {
     height: 100%;
     background-image: linear-gradient(white, blue);
@@ -8,45 +9,50 @@ body {
 .wrapper {
     display: flex;
     gap: 20px;
-
-
 }
 
-form {
+/* input form */
+
+.guestbook-input {
+    width: 300px;
+}
+
+.guestbook-input form {
     display: grid;
     grid-template-columns: 100px 1fr;
     margin: 8px;
     gap: 10px;
 }
 
-input[type=submit] {
+.guestbook-input input[type=submit] {
     grid-column: span 2;
 }
 
+/* list of entries */
 
-
-
-.guestbookInput {
-    width: 300px;
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    height: 100vh;
+    width: 100%;
 }
 
-.guestbookEntry {
+.guestbook-entry {
+    position: relative;
     padding: 15px;
     margin: 10px;
     border: 1px solid black;
     border-radius: 5px;
-
 }
 
-.userName {
+.guestbook-entry .btn-delete-message {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.author-name {
     font-size: 1.5rem;
-}
-
-.messagesList {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    overflow-y: scroll;
-    height: 100vh;
-    width: 100%;
 }
