@@ -9,6 +9,12 @@ $guestbook = new Guestbook($pathToJsonFile);
 
 // input validation
 
+
+
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     handlePostRequest($pathToJsonFile, $guestbook);
 }
@@ -32,4 +38,8 @@ function validateInputData(string $data) : string {
     $data = trim($data);
     $data = stripslashes($data);
     return $data;
+}
+
+function thisIsATestFunction(string $echoData) : string {
+    return $echoData . $echoData;
 }
