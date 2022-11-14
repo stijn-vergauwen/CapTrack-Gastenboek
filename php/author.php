@@ -16,12 +16,12 @@ class Author implements User, JsonSerializable {
         $this->messages = array();
 
         foreach($messagesArray as $message) {
-            array_push($this->messages, new GuestbookMessage($this, $message["message"]));
+            array_push($this->messages, new GuestbookMessage($this, $message["message"], $message["createdTime"]));
         }
     }
 
     public function createMessage(string $message) {
-        array_push($this->messages, new GuestbookMessage($this, $message));
+        array_push($this->messages, new GuestbookMessage($this, $message, date("j F Y - H:i:s")));
     }
 
     public function deleteMessage(string $indexToDelete) {

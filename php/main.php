@@ -21,11 +21,9 @@ function handlePostRequest(string $filePath, Guestbook $guestbook) {
     $messageToDelete = validateInputData($_POST["messageToDelete"] ?? "");
 
     if($firstName && $lastName && $message) {
-        print_r("add something");
         $guestbook->addGuestbookMessage(["firstName"=> $firstName, "lastName"=> $lastName, "message"=> $message]);
 
     } else if($messageToDelete) {
-        print_r("delete something");
         $guestbook->deleteGuestbookMessage($messageToDelete);
 
     } else {
@@ -34,8 +32,9 @@ function handlePostRequest(string $filePath, Guestbook $guestbook) {
 }
 
 function validateInputData(string $data) : string {
-    $data = htmlspecialchars($data);
-    $data = trim($data);
-    $data = stripslashes($data);
-    return $data;
+    return stripslashes(
+        trim(
+            htmlspecialchars($data)
+        )
+    );
 }

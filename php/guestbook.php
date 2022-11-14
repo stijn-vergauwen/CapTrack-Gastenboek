@@ -25,7 +25,10 @@ class Guestbook {
     private function createMessageHTML(GuestbookMessage $message) : string {
         return (
             "<form class='guestbook-entry' action='' method='post'>
-                <input type='hidden' name='messageToDelete' value='{$message->getMessage()}'>
+                <input type='hidden' name='messageToDelete' value='{$message->getTimeOfCreation()}'>
+                <div class='message-created-time'>
+                    posted at {$message->getTimeOfCreation()}
+                </div>
                 <div class='author-name'>
                     {$message->getAuthor()->getName()}
                 </div>
@@ -79,7 +82,7 @@ class Guestbook {
         $this->saveDataToFile($authors);
     }
     
-    public function deleteGuestbookMessage(string $messageToDelete) {
+    public function deleteGuestbookMessage(string $timeOfPost) {
         $authors = $this->getDataFromFile();
 
         foreach($authors as $author) {
@@ -89,7 +92,7 @@ class Guestbook {
             // message to delete is bad, use datetime instead, then no duplication
 
             for($i = 0; $i < count($messages); $i++) {
-                if($messages[$i]->getMessage() == $messageToDelete) {
+                if($messages[$i]->getTimeOfCreation() == $timeOfPost) {
                     $author->deleteMessage($i);
                     $hasFoundMessage = true;
                 }
