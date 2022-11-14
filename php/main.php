@@ -4,17 +4,15 @@ require("author.php");
 require("guestbookMessage.php");
 
 $pathToJsonFile = "../files/guestbookData.json";
-
 $guestbook = new Guestbook($pathToJsonFile);
 
 // input validation
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    handlePostRequest($pathToJsonFile, $guestbook);
+    handlePostRequest($guestbook);
 }
 
-
-function handlePostRequest(string $filePath, Guestbook $guestbook) {
+function handlePostRequest(Guestbook $guestbook) {
     $firstName = validateInputData($_POST["firstName"] ?? "");
     $lastName = validateInputData($_POST["lastName"] ?? "");
     $message = validateInputData($_POST["message"] ?? "");
@@ -25,16 +23,9 @@ function handlePostRequest(string $filePath, Guestbook $guestbook) {
 
     } else if($messageId) {
         $guestbook->deleteGuestbookMessage($messageId);
-
-    } else {
-        // roep error message function aan
     }
 }
 
 function validateInputData(string $data) : string {
-    return stripslashes(
-        trim(
-            htmlspecialchars($data)
-        )
-    );
+    return (stripslashes(trim(htmlspecialchars($data))));
 }

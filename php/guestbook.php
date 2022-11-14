@@ -18,6 +18,8 @@ class Guestbook {
                 $list .= $this->createMessageHTML($message);
             }
         }
+
+        if($list == "") $list = "<p class='text-center'>er zijn nog geen berichten geplaatst.</p>";
         
         return $list;
     }
@@ -26,11 +28,11 @@ class Guestbook {
         return (
             "<form class='guestbook-entry' action='' method='post'>
                 <input type='hidden' name='messageId' value='{$message->getId()}'>
-                <div class='message-created-time'>
-                    posted at {$message->getTimeOfCreation()}
-                </div>
                 <div class='author-name'>
                     {$message->getAuthor()->getName()}
+                </div>
+                <div class='message-created-time'>
+                    posted at {$message->getTimeOfCreation()}
                 </div>
                 <div class='message'>
                     {$message->getMessage()}
@@ -109,22 +111,5 @@ class Guestbook {
             }
         }
         return null;
-    }
-
-    function findGuestbookMessageByMessage(array $authors, string $message) {
-        foreach($authors as $author) {
-            foreach($author->getMessages() as $guestbookMessage) {
-                if($guestbookMessage->getMessage() == $message) {
-                    return $guestbookMessage;
-                }
-            }
-        }
-        return null;
-    }
-
-    function orderMessagesByCreatedTime(array $messages) : array {
-        $orderedMessages = array();
-
-        // not implemented
     }
 }

@@ -15,6 +15,7 @@ require("../php/main.php");
 <body>
     <div class="wrapper">
         <section class="input-section">
+            <p class="section-title">Plaats een nieuw bericht</p>
 
             <form class="input-form" action="" method="post">
                 <label for="firstName" class="form-label">Voornaam</label>
@@ -24,14 +25,14 @@ require("../php/main.php");
                 <input id="lastName" class="form-control" type="text" name="lastName" placeholder="achternaam" required>
 
                 <label for="message" class="form-label">Bericht</label>
-                <textarea id="message" class="form-control" type="text" name="message" placeholder="vul hier je bericht in" required rows="4"></textarea>
+                <textarea id="message" class="form-control" type="text" name="message" placeholder="vul hier je bericht in" required rows="6"></textarea>
 
-                <button type="submit" class="btn btn-primary">Verstuur</button>
+                <button type="submit" class="btn btn-primary">Plaats bericht</button>
             </form>
         </section>
 
         <section class="messages-section">
-            <p>Geplaatste berichten</p>
+            <p class="section-title">Geplaatste berichten</p>
 
             <div class="messages-list">
                 <?= $guestbook->getMessagesAsHTML();?>
