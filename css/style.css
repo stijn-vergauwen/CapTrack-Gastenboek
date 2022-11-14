@@ -1,58 +1,83 @@
 /* general */
 body {
-    height: 100%;
-    background-image: linear-gradient(white, blue);
     margin: 0;
-    overflow-y: hidden;
 }
 
 .wrapper {
+    min-height: 100vh;
     display: flex;
-    gap: 20px;
+    justify-content: end;
+    padding: 20px;
+    background-color: #dcdcdc;
 }
 
 /* input form */
 
-.guestbook-input {
-    width: 300px;
+.input-section {
+    position: fixed;
+    top: 20px;
+    left: 20px;
 }
 
-.guestbook-input form {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    margin: 8px;
-    gap: 10px;
+.input-form {
+    width: 28vw;
+    padding: 20px;
+    border-radius: 1em;
+    background-color: white;
 }
 
-.guestbook-input input[type=submit] {
-    grid-column: span 2;
+.input-section .form-control {
+    margin-bottom: 20px;
 }
 
 /* list of entries */
+
+.messages-section {
+    width: 65vw;
+    padding: 20px;
+    border-radius: 1em;
+    background-color: white;
+}
+
+.messages-section > p {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    text-align: center;
+}
 
 .messages-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: auto;
-    height: 100vh;
     width: 100%;
 }
 
 .guestbook-entry {
     position: relative;
     padding: 15px;
-    margin: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 2px solid #dddddd;
+    border-radius: 10px;
 }
 
 .guestbook-entry .btn-delete-message {
     position: absolute;
     top: 15px;
     right: 15px;
+    width: 25px;
+    height: 25px;
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bolder;
 }
 
 .author-name {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.message-created-time {
+    font-size: 1.2rem;
 }
