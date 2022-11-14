@@ -7,10 +7,15 @@ class GuestbookMessage implements Message, JsonSerializable {
     private $message;
     private $createdTime;
 
-    function __construct(Author $author, string $message, string $createdTime) {
+    function __construct(string $id, Author $author, string $message, string $createdTime) {
+        $this->id = $id;
         $this->author = $author;
         $this->message = $message;
         $this->createdTime = $createdTime;
+    }
+
+    public function getId() : string {
+        return $this->id;
     }
   
     public function getAuthor() : Author {
@@ -27,8 +32,9 @@ class GuestbookMessage implements Message, JsonSerializable {
     
     public function jsonSerialize() : array {
         return [
-            "message" => $this->message,
-            "createdTime" => $this->createdTime
+            "id" => $this->id,
+            "createdTime" => $this->createdTime,
+            "message" => $this->message
         ];
     }
 }
