@@ -18,13 +18,13 @@ function handlePostRequest(string $filePath, Guestbook $guestbook) {
     $firstName = validateInputData($_POST["firstName"] ?? "");
     $lastName = validateInputData($_POST["lastName"] ?? "");
     $message = validateInputData($_POST["message"] ?? "");
-    $messageToDelete = validateInputData($_POST["messageToDelete"] ?? "");
+    $messageId = validateInputData($_POST["messageId"] ?? "");
 
     if($firstName && $lastName && $message) {
         $guestbook->addGuestbookMessage(["firstName"=> $firstName, "lastName"=> $lastName, "message"=> $message]);
 
-    } else if($messageToDelete) {
-        $guestbook->deleteGuestbookMessage($messageToDelete);
+    } else if($messageId) {
+        $guestbook->deleteGuestbookMessage($messageId);
 
     } else {
         // roep error message function aan
