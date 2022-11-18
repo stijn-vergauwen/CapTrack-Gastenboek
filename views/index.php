@@ -34,6 +34,8 @@ require("../php/main.php");
         <section class="messages-section">
             <p class="section-title">Geplaatste berichten</p>
 
+            <?= print_r($guestbook->sortMessagesByDate($guestbook->getAllMessages())) ?>
+
             <div class="messages-list">
                 <?= $guestbook->getMessagesAsHTML();?>
             </div>

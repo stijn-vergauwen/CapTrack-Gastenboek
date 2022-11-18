@@ -8,6 +8,10 @@ $guestbook = new Guestbook($pathToJsonFile);
 
 // input validation
 
+// todo:
+// - sort messages by createdTime
+// - when reloading after post request, don't repeat request
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     handlePostRequest($guestbook);
 }

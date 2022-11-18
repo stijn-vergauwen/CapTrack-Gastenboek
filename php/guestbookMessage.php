@@ -7,7 +7,7 @@ class GuestbookMessage implements Message, JsonSerializable {
     private $message;
     private $createdTime;
 
-    function __construct(string $id, Author $author, string $message, string $createdTime) {
+    function __construct(string $id, Author $author, string $message, int $createdTime) {
         $this->id = $id;
         $this->author = $author;
         $this->message = $message;
@@ -26,7 +26,11 @@ class GuestbookMessage implements Message, JsonSerializable {
         return $this->message;
     }
 
-    public function getTimeOfCreation() : string {
+    public function getCreatedTime() : string {
+        return date("j F Y - H:i", $this->createdTime);
+    }
+
+    public function getTimestamp() : int {
         return $this->createdTime;
     }
     

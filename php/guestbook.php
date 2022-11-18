@@ -32,7 +32,7 @@ class Guestbook {
                     {$message->getAuthor()->getName()}
                 </div>
                 <div class='message-created-time'>
-                    posted at {$message->getTimeOfCreation()}
+                    posted at {$message->getCreatedTime()}
                 </div>
                 <div class='message'>
                     {$message->getMessage()}
@@ -104,6 +104,18 @@ class Guestbook {
         $this->saveDataToFile($authors);
     }
 
+    function getAllMessages() : array {
+        $authors = $this->getDataFromFile();
+        $allMessages = array();
+        foreach($authors as $author) {
+            foreach($author->getMessages() as $message) {
+                array_push($allMessages, $message);
+            }
+        }
+        print_r($allMessages);
+        return $allMessages;
+    }
+
     function findAuthorByName(array $authors, string $firstName, string $lastName) {
         foreach($authors as $author) {
             if($author->checkName($firstName, $lastName)) {
@@ -111,5 +123,23 @@ class Guestbook {
             }
         }
         return null;
+    }
+
+    function sortMessagesByDate(array $messages) : array {
+        $sorted = array();
+
+        foreach($messages as $message) {
+            $sortIndex = 0;
+
+            for ($i = 0; $i < count($sorted); $i++) { 
+                print_r($sorted[$i]);
+                if($message->getTimestamp() < $sorted[$i]->getTimestamp()) {
+                    $sortIndex = $i;
+                }
+            }
+            array_splice($sorted, $sortIndex, 0, $message);
+        }
+
+        return $sorted;
     }
 }

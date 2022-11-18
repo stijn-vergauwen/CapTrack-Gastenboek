@@ -21,7 +21,7 @@ class Author implements User, JsonSerializable {
     }
 
     public function createMessage(string $message) {
-        array_push($this->messages, new GuestbookMessage(uniqid(rand()), $this, $message, date("j F Y - H:i")));
+        array_push($this->messages, new GuestbookMessage(uniqid(rand()), $this, $message, time()));
     }
 
     public function deleteMessageAtIndex(string $indexToDelete) {
