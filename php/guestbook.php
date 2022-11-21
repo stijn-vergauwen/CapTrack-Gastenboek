@@ -32,7 +32,7 @@ class Guestbook {
                     {$message->getAuthor()->getName()}
                 </div>
                 <div class='message-created-time'>
-                    posted at {$message->getTimeOfCreation()}
+                    geplaatst op {$message->getTimeOfCreation()}
                 </div>
                 <div class='message'>
                     {$message->getMessage()}
