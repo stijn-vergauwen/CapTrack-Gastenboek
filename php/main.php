@@ -1,7 +1,7 @@
 <?php
-require("guestbook.php");
-require("author.php");
-require("guestbookMessage.php");
+require_once("guestbook.php");
+require_once("author.php");
+require_once("guestbookMessage.php");
 
 $pathToJsonFile = "../files/guestbookData.json";
 $guestbook = new Guestbook($pathToJsonFile);

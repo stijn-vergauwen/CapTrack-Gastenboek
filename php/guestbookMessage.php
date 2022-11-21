@@ -1,5 +1,5 @@
 <?php
-require("message.php");
+require_once("message.php");
 
 class GuestbookMessage implements Message, JsonSerializable {
     private $id;

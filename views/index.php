@@ -1,5 +1,5 @@
 <?php
-require("../php/main.php");
+require_once("../php/main.php");
 ?>
 
 <!DOCTYPE html>

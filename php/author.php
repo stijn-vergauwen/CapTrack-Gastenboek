@@ -1,5 +1,5 @@
 <?php
-require("user.php");
+require_once("user.php");
 
 class Author implements User, JsonSerializable {
     private $firstName;
